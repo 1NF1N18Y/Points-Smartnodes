@@ -435,7 +435,7 @@ public:
         pchMessageStart[1] = 0x41; // A
         pchMessageStart[2] = 0x4d; // M
         pchMessageStart[3] = 0x45; // E
-        nDefaultPort = 8788;
+        nDefaultPort = 3466;
         nPruneAfterHeight = 100000;
    //   FindMainNetGenesisBlock(1652138420, 0x20001fff, "main");
         uint32_t nGenesisTime = 1651442858;	
