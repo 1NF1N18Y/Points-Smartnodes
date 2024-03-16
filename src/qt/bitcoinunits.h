@@ -62,9 +62,9 @@ public:
      */
     enum Unit
     {
-        NEOX,
-        mNEOX,
-        uNEOX
+        PTS,
+        mPTS,
+        uPTS
     };
 
     enum SeparatorStyle
