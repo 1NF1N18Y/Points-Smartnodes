@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_UNORDERED_LRU_CACHE_H
-#define NEOXA_UNORDERED_LRU_CACHE_H
+#ifndef POINTS_UNORDERED_LRU_CACHE_H
+#define POINTS_UNORDERED_LRU_CACHE_H
 
 #include <unordered_map>
 
@@ -122,4 +122,4 @@ private:
     }
 };
 
-#endif // NEOXA_UNORDERED_LRU_CACHE_H
+#endif // POINTS_UNORDERED_LRU_CACHE_H

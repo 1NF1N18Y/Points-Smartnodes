@@ -1,7 +1,7 @@
 Neoxa Core
 ==========
 
-This is the official reference wallet for Neoxa digital currency and comprises the backbone of the Neoxa peer-to-peer network. You can [download Neoxa Core](https://www.neoxa.org/downloads/) or [build it yourself](#building) using the guides below.
+This is the official reference wallet for Neoxa digital currency and comprises the backbone of the Neoxa peer-to-peer network. You can [download Neoxa Core](https://www.points.org/downloads/) or [build it yourself](#building) using the guides below.
 
 Running
 ---------------------
@@ -11,12 +11,12 @@ The following are some helpful notes on how to run Neoxa on your native platform
 
 Unpack the files into a directory and run:
 
-- `bin/neoxa-qt` (GUI) or
-- `bin/neoxad` (headless)
+- `bin/points-qt` (GUI) or
+- `bin/pointsd` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run neoxa-qt.exe.
+Unpack the files into a directory, and then run points-qt.exe.
 
 ### OS X
 

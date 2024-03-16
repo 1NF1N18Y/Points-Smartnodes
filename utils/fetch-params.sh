@@ -8,7 +8,7 @@ uname_S=$(uname -s 2>/dev/null || echo not)
 if [ "$uname_S" = "Darwin" ]; then
     PARAMS_DIR="$HOME/Library/Application Support/NeoxaParams"
 else
-    PARAMS_DIR="$HOME/.neoxa-params"
+    PARAMS_DIR="$HOME/.points-params"
 fi
 
 # Commented out because these are unused; see below.
@@ -17,7 +17,7 @@ fi
 SAPLING_SPEND_NAME='sapling-spend.params'
 SAPLING_OUTPUT_NAME='sapling-output.params'
 SAPLING_SPROUT_GROTH16_NAME='sprout-groth16.params'
-DOWNLOAD_URL="https://github.com/The-Neoxa-Endeavor/neoxa/releases/tag/1.2.15.3"
+DOWNLOAD_URL="https://github.com/The-Neoxa-Endeavor/points/releases/tag/1.2.15.3"
 #IPFS_HASH="/ipfs/QmXRHVGLQBiKwvNq7c2vPxAKz1zRVmMYbmt7G5TQss7tY7"
 
 SHA256CMD="$(command -v sha256sum || echo shasum)"
@@ -27,15 +27,15 @@ WGETCMD="$(command -v wget || echo '')"
 IPFSCMD="$(command -v ipfs || echo '')"
 CURLCMD="$(command -v curl || echo '')"
 
-# fetch methods can be disabled with NEOX_DISABLE_SOMETHING=1
-NEOX_DISABLE_WGET="${NEOX_DISABLE_WGET:-}"
-#NEOX_DISABLE_IPFS="${NEOX_DISABLE_IPFS:-}"
-NEOX_DISABLE_CURL="${NEOX_DISABLE_CURL:-}"
+# fetch methods can be disabled with PTS_DISABLE_SOMETHING=1
+PTS_DISABLE_WGET="${PTS_DISABLE_WGET:-}"
+#PTS_DISABLE_IPFS="${PTS_DISABLE_IPFS:-}"
+PTS_DISABLE_CURL="${PTS_DISABLE_CURL:-}"
 
 LOCKFILE=/tmp/fetch_params.lock
 
 fetch_wget() {
-    if [ -z "$WGETCMD" ] || ! [ -z "$NEOX_DISABLE_WGET" ]; then
+    if [ -z "$WGETCMD" ] || ! [ -z "$PTS_DISABLE_WGET" ]; then
         return 1
     fi
 
@@ -53,7 +53,7 @@ EOF
 }
 
 #fetch_ipfs() {
-#    if [ -z "$IPFSCMD" ] || ! [ -z "$NEOX_DISABLE_IPFS" ]; then
+#    if [ -z "$IPFSCMD" ] || ! [ -z "$PTS_DISABLE_IPFS" ]; then
 #        return 1
 #    fi
 
@@ -66,7 +66,7 @@ EOF
 #}
 
 fetch_curl() {
-    if [ -z "$CURLCMD" ] || ! [ -z "$NEOX_DISABLE_CURL" ]; then
+    if [ -z "$CURLCMD" ] || ! [ -z "$PTS_DISABLE_CURL" ]; then
         return 1
     fi
 
@@ -176,7 +176,7 @@ main() {
     || exit_locked_error
 
     cat <<EOF
-NEOX - fetch-params.sh
+PTS - fetch-params.sh
 
 This script will fetch the Neoxa SNARK parameters and verify their
 integrity with sha256sum.

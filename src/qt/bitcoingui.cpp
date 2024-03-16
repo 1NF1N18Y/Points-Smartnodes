@@ -5,7 +5,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/neoxa-config.h"
+#include "config/points-config.h"
 #endif
 
 #include "bitcoingui.h"
@@ -345,7 +345,7 @@ void BitcoinGUI::createActions()
     sendCoinsMenuAction->setToolTip(sendCoinsMenuAction->statusTip());
 
     receiveCoinsAction = new QAction(tr("&Receive"), this);
-    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and neoxa: URIs)"));
+    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and points: URIs)"));
     receiveCoinsAction->setToolTip(receiveCoinsAction->statusTip());
     receiveCoinsAction->setCheckable(true);
 #ifdef Q_OS_MAC
@@ -388,7 +388,7 @@ void BitcoinGUI::createActions()
     }
 
     TransferAssetsAction = new QAction(tr("&Transfer Assets"), this);
-    TransferAssetsAction->setStatusTip(tr("Transfer assets to NEOX addresses"));
+    TransferAssetsAction->setStatusTip(tr("Transfer assets to PTS addresses"));
     TransferAssetsAction->setCheckable(true);
     tabGroup->addAction(TransferAssetsAction);
 
@@ -492,7 +492,7 @@ void BitcoinGUI::createActions()
     usedReceivingAddressesAction->setStatusTip(tr("Show the list of used receiving addresses and labels"));
 
     openAction = new QAction(QApplication::style()->standardIcon(QStyle::SP_DirOpenIcon), tr("Open &URI..."), this);
-    openAction->setStatusTip(tr("Open a neoxa: URI or payment request"));
+    openAction->setStatusTip(tr("Open a points: URI or payment request"));
 
     showHelpMessageAction = new QAction(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation), tr("&Command-line options"), this);
     showHelpMessageAction->setMenuRole(QAction::NoRole);
@@ -638,7 +638,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addWidget(spacer);
 
         QLabel *logoLabel = new QLabel();
-        QPixmap logoPixmap(":/images/neoxa_logo_toolbar");
+        QPixmap logoPixmap(":/images/points_logo_toolbar");
         logoLabel->setPixmap(logoPixmap);
         toolbar->addWidget(logoLabel);
 
@@ -1405,7 +1405,7 @@ void BitcoinGUI::showIncomingTransactions()
 
         QString msg;
         if (sentCount > 0) {
-            if (txs.back().assetName == "NEOX")
+            if (txs.back().assetName == "PTS")
                 msg += tr("Sent Amount: %1\n").arg(BitcoinUnits::formatWithUnit(unit, sentAmount, true));
             else
                 msg += tr("Sent Amount: %1\n").arg(BitcoinUnits::formatWithCustomName(txs.back().assetName, sentAmount, MAX_ASSET_UNITS, true));
@@ -1413,7 +1413,7 @@ void BitcoinGUI::showIncomingTransactions()
             //msg += tr("Sent Amount: %1\n").arg(BitcoinUnits::formatWithUnit(unit, sentAmount, true));
         }
         if (receivedCount > 0) {
-            if (txs.back().assetName == "NEOX")
+            if (txs.back().assetName == "PTS")
                 msg += tr("Received Amount: %1\n").arg(BitcoinUnits::formatWithUnit(unit, receivedAmount, true));
             else
                 msg += tr("Received Amount: %1\n").arg(BitcoinUnits::formatWithCustomName(txs.back().assetName, receivedAmount, MAX_ASSET_UNITS, true));
@@ -1426,7 +1426,7 @@ void BitcoinGUI::showIncomingTransactions()
         for (auto& itx : txs) {
             // On new transaction, make an info balloon
             QString msg = tr("Date: %1\n").arg(itx.date);
-            if (itx.assetName == "NEOX")
+            if (itx.assetName == "PTS")
                 msg += tr("Amount: %1\n").arg(BitcoinUnits::formatWithUnit(itx.unit, itx.amount, true));
             else
                 msg += tr("Amount: %1\n").arg(BitcoinUnits::formatWithCustomName(itx.assetName, itx.amount, MAX_ASSET_UNITS, true));
@@ -1446,7 +1446,7 @@ void BitcoinGUI::checkAssets()
     // Check that status of RIP2 and activate the assets icon if it is active
     if(AreAssetsDeployed()) {
         TransferAssetsAction->setDisabled(false);
-        TransferAssetsAction->setToolTip(tr("Transfer assets to NEOX addresses"));
+        TransferAssetsAction->setToolTip(tr("Transfer assets to PTS addresses"));
         CreateAssetsAction->setDisabled(false);
         CreateAssetsAction->setToolTip(tr("Create new assets"));
         ManageAssetsAction->setDisabled(false);

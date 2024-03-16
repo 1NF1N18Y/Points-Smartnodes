@@ -1,6 +1,6 @@
 [Protocol]
-exec=neoxa-qt '%u'
-protocol=neoxa
+exec=points-qt '%u'
+protocol=points
 input=none
 output=none
 helper=true

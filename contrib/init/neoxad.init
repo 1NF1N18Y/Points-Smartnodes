@@ -1,36 +1,36 @@
 #!/usr/bin/env bash
 #
-#  neoxad The Neoxa Core server.
+#  pointsd The Neoxa Core server.
 #
 #
 # chkconfig: 345 80 20
-# description: neoxad
-# processname: neoxad
+# description: pointsd
+# processname: pointsd
 #
 
 # Source function library.
 . /etc/init.d/functions
 
-# you can override defaults in /etc/sysconfig/neoxad, see below
-if [ -f /etc/sysconfig/neoxad ]; then
-        . /etc/sysconfig/neoxad
+# you can override defaults in /etc/sysconfig/pointsd, see below
+if [ -f /etc/sysconfig/pointsd ]; then
+        . /etc/sysconfig/pointsd
 fi
 
 RETVAL=0
 
-prog=neoxad
-# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/neoxad
-lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/neoxad}
+prog=pointsd
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/pointsd
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/pointsd}
 
-# neoxad defaults to /usr/bin/neoxad, override with BITCOIND_BIN
-neoxad=${BITCOIND_BIN-/usr/bin/neoxad}
+# pointsd defaults to /usr/bin/pointsd, override with BITCOIND_BIN
+pointsd=${BITCOIND_BIN-/usr/bin/pointsd}
 
-# neoxad opts default to -disablewallet, override with BITCOIND_OPTS
-neoxad_opts=${BITCOIND_OPTS--disablewallet}
+# pointsd opts default to -disablewallet, override with BITCOIND_OPTS
+pointsd_opts=${BITCOIND_OPTS--disablewallet}
 
 start() {
     echo -n $"Starting $prog: "
-    daemon $DAEMONOPTS $neoxad $neoxad_opts
+    daemon $DAEMONOPTS $pointsd $pointsd_opts
     RETVAL=$?
     echo
     [ $RETVAL -eq 0 ] && touch $lockfile

@@ -8,8 +8,8 @@
  *      Author: tri
  */
 
-#ifndef NEOXA_SELECTION_H_
-#define NEOXA_SELECTION_H_
+#ifndef POINTS_SELECTION_H_
+#define POINTS_SELECTION_H_
 
 #include "uint256.h"
 #include <string>
@@ -90,4 +90,4 @@ protected:
 
 };
 
-#endif /* NEOXA_SELECTION_H_ */
+#endif /* POINTS_SELECTION_H_ */

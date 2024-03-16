@@ -3,13 +3,13 @@ Description=Neoxa's distributed currency daemon
 After=network.target
 
 [Service]
-User=neoxacore
-Group=neoxacore
+User=pointscore
+Group=pointscore
 
 Type=forking
-PIDFile=/var/lib/neoxad/neoxad.pid
-ExecStart=/usr/bin/neoxad -daemon -pid=/var/lib/neoxad/neoxad.pid \
--conf=/etc/neoxacore/neoxa.conf -datadir=/var/lib/neoxad -disablewallet
+PIDFile=/var/lib/pointsd/pointsd.pid
+ExecStart=/usr/bin/pointsd -daemon -pid=/var/lib/pointsd/pointsd.pid \
+-conf=/etc/pointscore/points.conf -datadir=/var/lib/pointsd -disablewallet
 
 Restart=always
 PrivateTmp=true

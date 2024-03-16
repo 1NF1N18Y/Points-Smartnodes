@@ -1,9 +1,9 @@
 Release Process
 ====================
 
-* Update translations, see [translation_process.md](https://github.com/The-Neoxa-Endeavor/neoxa/blob/master/doc/translation_process.md#synchronising-translations).
+* Update translations, see [translation_process.md](https://github.com/The-Neoxa-Endeavor/points/blob/master/doc/translation_process.md#synchronising-translations).
 
-* Update manpages, see [gen-manpages.sh](https://github.com/The-Neoxa-Endeavor/neoxa/blob/master/contrib/devtools/README.md#gen-manpagessh).
+* Update manpages, see [gen-manpages.sh](https://github.com/The-Neoxa-Endeavor/points/blob/master/contrib/devtools/README.md#gen-manpagessh).
 
 Before every minor and major release:
 
@@ -32,10 +32,10 @@ If you're using the automated script (found in [contrib/gitian-build.py](/contri
 Check out the source code in the following directory hierarchy.
 
 	cd /path/to/your/toplevel/build
-	git clone https://github.com/neoxa/gitian.sigs.git
-	git clone https://github.com/The-Neoxa-Endeavor/neoxa-detached-sigs.git
+	git clone https://github.com/points/gitian.sigs.git
+	git clone https://github.com/The-Neoxa-Endeavor/points-detached-sigs.git
 	git clone https://github.com/devrandom/gitian-builder.git
-	git clone https://github.com/The-Neoxa-Endeavor/neoxa.git
+	git clone https://github.com/The-Neoxa-Endeavor/points.git
 
 ### Neoxa Core maintainers/release engineers, suggestion for writing release notes
 
@@ -57,7 +57,7 @@ If you're using the automated script (found in [contrib/gitian-build.py](/contri
 
 Setup Gitian descriptors:
 
-    pushd ./neoxa
+    pushd ./points
     export SIGNER=(your Gitian key, ie bluematt, sipa, etc)
     export VERSION=(new version, e.g. 0.12.3)
     git fetch
@@ -91,10 +91,10 @@ Create the OS X SDK tarball, see the [OS X readme](README_osx.md) for details, a
 
 NOTE: Gitian is sometimes unable to download files. If you have errors, try the step below.
 
-By default, Gitian will fetch source files as needed. To cache them ahead of time, make sure you have checked out the tag you want to build in neoxa, then:
+By default, Gitian will fetch source files as needed. To cache them ahead of time, make sure you have checked out the tag you want to build in points, then:
 
     pushd ./gitian-builder
-    make -C ../neoxa/depends download SOURCES_PATH=`pwd`/cache/common
+    make -C ../points/depends download SOURCES_PATH=`pwd`/cache/common
     popd
 
 Only missing files will be fetched, so this is safe to re-run for each build.
@@ -102,7 +102,7 @@ Only missing files will be fetched, so this is safe to re-run for each build.
 NOTE: Offline builds must use the --url flag to ensure Gitian fetches only from local URLs. For example:
 
     pushd ./gitian-builder
-    ./bin/gbuild --url neoxa=/path/to/neoxa,signature=/path/to/sigs {rest of arguments}
+    ./bin/gbuild --url points=/path/to/points,signature=/path/to/sigs {rest of arguments}
     popd
 
 The gbuild invocations below <b>DO NOT DO THIS</b> by default.
@@ -110,42 +110,42 @@ The gbuild invocations below <b>DO NOT DO THIS</b> by default.
 ### Build and sign Neoxa Core for Linux, Windows, and OS X:
 
     pushd ./gitian-builder
-    ./bin/gbuild --num-make 2 --memory 3000 --commit neoxa=v${VERSION} ../neoxa/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs/ ../neoxa/contrib/gitian-descriptors/gitian-linux.yml
-    mv build/out/neoxa-*.tar.gz build/out/src/neoxa-*.tar.gz ../
+    ./bin/gbuild --num-make 2 --memory 3000 --commit points=v${VERSION} ../points/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs/ ../points/contrib/gitian-descriptors/gitian-linux.yml
+    mv build/out/points-*.tar.gz build/out/src/points-*.tar.gz ../
 
-    ./bin/gbuild --num-make 2 --memory 3000 --commit neoxa=v${VERSION} ../neoxa/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../neoxa/contrib/gitian-descriptors/gitian-win.yml
-    mv build/out/neoxa-*-win-unsigned.tar.gz inputs/neoxa-win-unsigned.tar.gz
-    mv build/out/neoxa-*.zip build/out/neoxa-*.exe ../
+    ./bin/gbuild --num-make 2 --memory 3000 --commit points=v${VERSION} ../points/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../points/contrib/gitian-descriptors/gitian-win.yml
+    mv build/out/points-*-win-unsigned.tar.gz inputs/points-win-unsigned.tar.gz
+    mv build/out/points-*.zip build/out/points-*.exe ../
 
-    ./bin/gbuild --num-make 2 --memory 3000 --commit neoxa=v${VERSION} ../neoxa/contrib/gitian-descriptors/gitian-osx.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../neoxa/contrib/gitian-descriptors/gitian-osx.yml
-    mv build/out/neoxa-*-osx-unsigned.tar.gz inputs/neoxa-osx-unsigned.tar.gz
-    mv build/out/neoxa-*.tar.gz build/out/neoxa-*.dmg ../
+    ./bin/gbuild --num-make 2 --memory 3000 --commit points=v${VERSION} ../points/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../points/contrib/gitian-descriptors/gitian-osx.yml
+    mv build/out/points-*-osx-unsigned.tar.gz inputs/points-osx-unsigned.tar.gz
+    mv build/out/points-*.tar.gz build/out/points-*.dmg ../
     popd
 
 Build output expected:
 
-  1. source tarball (`neoxa-${VERSION}.tar.gz`)
-  2. linux 32-bit and 64-bit dist tarballs (`neoxa-${VERSION}-linux[32|64].tar.gz`)
-  3. windows 32-bit and 64-bit unsigned installers and dist zips (`neoxa-${VERSION}-win[32|64]-setup-unsigned.exe`, `neoxa-${VERSION}-win[32|64].zip`)
-  4. OS X unsigned installer and dist tarball (`neoxa-${VERSION}-osx-unsigned.dmg`, `neoxa-${VERSION}-osx64.tar.gz`)
+  1. source tarball (`points-${VERSION}.tar.gz`)
+  2. linux 32-bit and 64-bit dist tarballs (`points-${VERSION}-linux[32|64].tar.gz`)
+  3. windows 32-bit and 64-bit unsigned installers and dist zips (`points-${VERSION}-win[32|64]-setup-unsigned.exe`, `points-${VERSION}-win[32|64].zip`)
+  4. OS X unsigned installer and dist tarball (`points-${VERSION}-osx-unsigned.dmg`, `points-${VERSION}-osx64.tar.gz`)
   5. Gitian signatures (in `gitian.sigs/${VERSION}-<linux|{win,osx}-unsigned>/(your Gitian key)/`)
 
 ### Verify other gitian builders signatures to your own. (Optional)
 
 Add other gitian builders keys to your gpg keyring, and/or refresh keys.
 
-    gpg --import neoxa/contrib/gitian-keys/*.pgp
+    gpg --import points/contrib/gitian-keys/*.pgp
     gpg --refresh-keys
 
 Verify the signatures
 
     pushd ./gitian-builder
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../neoxa/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../neoxa/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../neoxa/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../points/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../points/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../points/contrib/gitian-descriptors/gitian-osx.yml
     popd
 
 ### Next steps:
@@ -166,22 +166,22 @@ Codesigner only: Create Windows/OS X detached signatures:
 
 Codesigner only: Sign the osx binary:
 
-    transfer neoxacore-osx-unsigned.tar.gz to osx for signing
-    tar xf neoxacore-osx-unsigned.tar.gz
+    transfer pointscore-osx-unsigned.tar.gz to osx for signing
+    tar xf pointscore-osx-unsigned.tar.gz
     ./detached-sig-create.sh -s "Key ID" -o runtime
     Enter the keychain password and authorize the signature
     Move signature-osx.tar.gz back to the gitian host
 
 Codesigner only: Sign the windows binaries:
 
-    tar xf neoxacore-win-unsigned.tar.gz
+    tar xf pointscore-win-unsigned.tar.gz
     ./detached-sig-create.sh -key /path/to/codesign.key
     Enter the passphrase for the key when prompted
     signature-win.tar.gz will be created
 
 Codesigner only: Commit the detached codesign payloads:
 
-    cd ~/neoxacore-detached-sigs
+    cd ~/pointscore-detached-sigs
     checkout the appropriate branch for this release series
     rm -rf *
     tar xf signature-osx.tar.gz
@@ -194,25 +194,25 @@ Codesigner only: Commit the detached codesign payloads:
 Non-codesigners: wait for Windows/OS X detached signatures:
 
 - Once the Windows/OS X builds each have 3 matching signatures, they will be signed with their respective release keys.
-- Detached signatures will then be committed to the [neoxa-detached-sigs](https://github.com/The-Neoxa-Endeavor/neoxa-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
+- Detached signatures will then be committed to the [points-detached-sigs](https://github.com/The-Neoxa-Endeavor/points-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
 
 Create (and optionally verify) the signed OS X binary:
 
     pushd ./gitian-builder
-    ./bin/gbuild -i --commit signature=v${VERSION} ../neoxa/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../neoxa/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../neoxa/contrib/gitian-descriptors/gitian-osx-signer.yml
-    mv build/out/neoxa-osx-signed.dmg ../neoxa-${VERSION}-osx.dmg
+    ./bin/gbuild -i --commit signature=v${VERSION} ../points/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../points/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../points/contrib/gitian-descriptors/gitian-osx-signer.yml
+    mv build/out/points-osx-signed.dmg ../points-${VERSION}-osx.dmg
     popd
 
 Create (and optionally verify) the signed Windows binaries:
 
     pushd ./gitian-builder
-    ./bin/gbuild -i --commit signature=v${VERSION} ../neoxa/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../neoxa/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../neoxa/contrib/gitian-descriptors/gitian-win-signer.yml
-    mv build/out/neoxa-*win64-setup.exe ../neoxa-${VERSION}-win64-setup.exe
-    mv build/out/neoxa-*win32-setup.exe ../neoxa-${VERSION}-win32-setup.exe
+    ./bin/gbuild -i --commit signature=v${VERSION} ../points/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../points/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../points/contrib/gitian-descriptors/gitian-win-signer.yml
+    mv build/out/points-*win64-setup.exe ../points-${VERSION}-win64-setup.exe
+    mv build/out/points-*win32-setup.exe ../points-${VERSION}-win32-setup.exe
     popd
 
 Commit your signature for the signed OS X/Windows binaries:
@@ -234,23 +234,23 @@ sha256sum * > SHA256SUMS
 
 The list of files should be:
 ```
-neoxa-${VERSION}-aarch64-linux-gnu.tar.gz
-neoxa-${VERSION}-arm-linux-gnueabihf.tar.gz
-neoxa-${VERSION}-i686-pc-linux-gnu.tar.gz
-neoxa-${VERSION}-x86_64-linux-gnu.tar.gz
-neoxa-${VERSION}-osx64.tar.gz
-neoxa-${VERSION}-osx.dmg
-neoxa-${VERSION}.tar.gz
-neoxa-${VERSION}-win32-setup.exe
-neoxa-${VERSION}-win32.zip
-neoxa-${VERSION}-win64-setup.exe
-neoxa-${VERSION}-win64.zip
+points-${VERSION}-aarch64-linux-gnu.tar.gz
+points-${VERSION}-arm-linux-gnueabihf.tar.gz
+points-${VERSION}-i686-pc-linux-gnu.tar.gz
+points-${VERSION}-x86_64-linux-gnu.tar.gz
+points-${VERSION}-osx64.tar.gz
+points-${VERSION}-osx.dmg
+points-${VERSION}.tar.gz
+points-${VERSION}-win32-setup.exe
+points-${VERSION}-win32.zip
+points-${VERSION}-win64-setup.exe
+points-${VERSION}-win64.zip
 ```
 The `*-debug*` files generated by the Gitian build contain debug symbols
 for troubleshooting by developers. It is assumed that anyone that is interested
 in debugging can run Gitian to generate the files for themselves. To avoid
 end-user confusion about which file to pick, as well as save storage
-space *do not upload these to the neoxa.net server*.
+space *do not upload these to the points.net server*.
 
 - GPG-sign it, delete the unsigned file:
 ```
@@ -260,20 +260,20 @@ rm SHA256SUMS
 (the digest algorithm is forced to sha256 to avoid confusion of the `Hash:` header that GPG adds with the SHA256 used for the files)
 Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spurious/nonsensical entry.
 
-- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the neoxa.org server
+- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the points.org server
 
-- Update neoxa.org
+- Update points.org
 
 - Announce the release:
 
-  - Release on Neoxa forum: https://www.neoxa.org/forum/topic/official-announcements.54/
+  - Release on Neoxa forum: https://www.points.org/forum/topic/official-announcements.54/
 
   - Optionally Discord, twitter, reddit /r/Neoxa, ... but this will usually sort out itself
 
-  - Notify flare so that he can start building [the PPAs](https://launchpad.net/~neoxa.org/+archive/ubuntu/neoxa)
+  - Notify flare so that he can start building [the PPAs](https://launchpad.net/~points.org/+archive/ubuntu/points)
 
   - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
 
-  - Create a [new GitHub release](https://github.com/The-Neoxa-Endeavor/neoxa/releases/new) with a link to the archived release notes.
+  - Create a [new GitHub release](https://github.com/The-Neoxa-Endeavor/points/releases/new) with a link to the archived release notes.
 
   - Celebrate

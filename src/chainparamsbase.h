@@ -10,7 +10,7 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between neoxa-cli and neoxad)
+ * CBaseChainParams defines the base parameters (shared between points-cli and pointsd)
  * of a given instance of the Neoxa system.
  */
 class CBaseChainParams

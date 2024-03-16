@@ -6,7 +6,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/neoxa-config.h"
+#include "config/points-config.h"
 #endif
 
 #include "util.h"
@@ -108,8 +108,8 @@ bool fLiteMode = false;
 */
 int nWalletBackups = 10;
 
-const char * const BITCOIN_CONF_FILENAME = "neoxa.conf";
-const char * const BITCOIN_PID_FILENAME = "neoxad.pid";
+const char * const BITCOIN_CONF_FILENAME = "points.conf";
+const char * const BITCOIN_PID_FILENAME = "pointsd.pid";
 
 ArgsManager gArgs;
 bool fPrintToConsole = false;
@@ -290,7 +290,7 @@ bool GetLogCategory(uint64_t *f, const std::string *str)
             *f = BCLog::ALL;
             return true;
         }
-        if (*str == "neoxa") {
+        if (*str == "points") {
             *f = BCLog::CHAINLOCKS
                 | BCLog::GOBJECT
                 | BCLog::INSTANTSEND
@@ -622,7 +622,7 @@ fs::path GetDefaultDataDir()
     // Windows < Vista: C:\Documents and Settings\Username\Application Data\NeoxaCore
     // Windows >= Vista: C:\Users\Username\AppData\Roaming\NeoxaCore
     // Mac: ~/Library/Application Support/NeoxaCore
-    // Unix: ~/.neoxacore
+    // Unix: ~/.pointscore
 #ifdef WIN32
     // Windows
     return GetSpecialFolderPath(CSIDL_APPDATA) / "NeoxaCore";
@@ -638,7 +638,7 @@ fs::path GetDefaultDataDir()
     return pathRet / "Library/Application Support/NeoxaCore";
 #else
     // Unix
-    return pathRet / ".neoxacore";
+    return pathRet / ".pointscore";
 #endif
 #endif
 }
@@ -705,7 +705,7 @@ void ArgsManager::ReadConfigFile(const std::string& confPath)
 {
     fs::ifstream streamConfig(GetConfigFile(confPath));
     if (!streamConfig.good()){
-        // Create empty neoxa.conf if it does not excist
+        // Create empty points.conf if it does not excist
         FILE* configFile = fopen(GetConfigFile(confPath).string().c_str(), "a");
         if (configFile != nullptr)
             fclose(configFile);
@@ -719,7 +719,7 @@ void ArgsManager::ReadConfigFile(const std::string& confPath)
 
         for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it)
         {
-            // Don't overwrite existing settings so command line settings override neoxa.conf
+            // Don't overwrite existing settings so command line settings override points.conf
             std::string strKey = std::string("-") + it->string_key;
             std::string strValue = it->value[0];
             InterpretNegativeSetting(strKey, strValue);

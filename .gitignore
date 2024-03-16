@@ -6,15 +6,15 @@ reset-files.bash
 *.tar.gz
 
 *.exe
-src/neoxa
-src/neoxad
-src/neoxa-cli
-src/neoxa-tx
-src/test/test_neoxa
-src/test/test_neoxa_fuzzy
-src/qt/test/test_neoxa-qt
+src/points
+src/pointsd
+src/points-cli
+src/points-tx
+src/test/test_points
+src/test/test_points_fuzzy
+src/qt/test/test_points-qt
 src/qt/res/css/colors/*
-src/bench/bench_neoxa
+src/bench/bench_points
 
 # autoreconf
 Makefile.in
@@ -37,8 +37,8 @@ config.log
 config.status
 configure
 libtool
-src/config/neoxa-config.h
-src/config/neoxa-config.h.in
+src/config/points-config.h
+src/config/points-config.h.in
 src/config/stamp-h1
 share/setup.nsi
 share/qt/Info.plist
@@ -85,14 +85,14 @@ libconftest.dylib*
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-neoxa-qt
-neoxa-Qt.app
+points-qt
+points-Qt.app
 background.tiff*
 !/depends/Makefile
 
 # Unit-tests
 Makefile.test
-neoxa-qt_test
+points-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -106,7 +106,7 @@ build
 *.gcno
 *.gcda
 /*.info
-test_neoxa.coverage/
+test_points.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -124,15 +124,15 @@ test/cache/*
 .autotools
 /doc/doxygen/
 
-libneoxaconsensus.pc
+libpointsconsensus.pc
 contrib/devtools/split-debug.sh
-src/qt/neoxa-qt.bash
+src/qt/points-qt.bash
 qa/pull-tester/tests-config.sh
 
 #development symlinks
-neoxa-cli
-neoxad
-neoxa-qt
+points-cli
+pointsd
+points-qt
 make
 
 /docker/bin
@@ -148,6 +148,6 @@ dist/
 *.conf
 .settings/language.settings.xml
 
-/neoxa.iml
+/points.iml
 /testnet3_binary/
 /testnet4/

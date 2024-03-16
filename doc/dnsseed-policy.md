@@ -50,4 +50,4 @@ situations but should be discussed in public in advance.
 
 See also
 ----------
-- [neoxa-seeder](https://github.com/nightlyThe-Neoxa-Endeavor/neoxa-seeder) is a reference implementation of a DNS seed.
+- [points-seeder](https://github.com/nightlyThe-Neoxa-Endeavor/points-seeder) is a reference implementation of a DNS seed.

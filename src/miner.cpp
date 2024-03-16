@@ -565,7 +565,7 @@ void static NeoxaMiner(const CChainParams& chainparams)
 {
     LogPrintf("NeoxaMiner -- started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
-    RenameThread("neoxa-miner");
+    RenameThread("points-miner");
 
     unsigned int nExtraNonce = 0;
 

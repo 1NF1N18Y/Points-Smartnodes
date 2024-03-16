@@ -188,8 +188,8 @@
         <translation>Confirmaţi criptarea portofelului</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR NEOX&lt;/b&gt;!</source>
-        <translation>Avertisment: dacă criptezi portofelul și pierzi fraza de acces, vei &lt;b&gt;PIERDE TOATE MONEDELE TALE NEOX&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PTS&lt;/b&gt;!</source>
+        <translation>Avertisment: dacă criptezi portofelul și pierzi fraza de acces, vei &lt;b&gt;PIERDE TOATE MONEDELE TALE PTS&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -294,7 +294,7 @@
         <translation>P&amp;rimeşte</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and neoxa: URIs)</source>
+        <source>Request payments (generates QR codes and points: URIs)</source>
         <translation>Cereţi plăţi (generează coduri QR şi Neoxa-uri: URls)</translation>
     </message>
     <message>
@@ -482,7 +482,7 @@
         <translation>Deschide &amp;URI...</translation>
     </message>
     <message>
-        <source>Open a neoxa: URI or payment request</source>
+        <source>Open a points: URI or payment request</source>
         <translation>Deschidere Neoxa: o adresa URI sau o cerere de plată</translation>
     </message>
     <message>
@@ -1424,9 +1424,9 @@
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/projects/p/neoxa/</source>
+https://www.transifex.com/projects/p/points/</source>
         <translation>Limba lipsă sau traducerea incompletă? Ajută contribuind traduceri aici:
-https://www.transifex.com/projects/p/neoxa/</translation>
+https://www.transifex.com/projects/p/points/</translation>
     </message>
     <message>
         <source>User Interface Theme:</source>
@@ -1588,8 +1588,8 @@ https://www.transifex.com/projects/p/neoxa/</translation>
         <translation>Suma și Runde:</translation>
     </message>
     <message>
-        <source>0 NEOX / 0 Rounds</source>
-        <translation>0 NEOX / 0 Runde</translation>
+        <source>0 PTS / 0 Rounds</source>
+        <translation>0 PTS / 0 Runde</translation>
     </message>
     <message>
         <source>Submitted Denom:</source>
@@ -1737,7 +1737,7 @@ https://www.transifex.com/projects/p/neoxa/</translation>
         <translation>Eroare la cererea de plată</translation>
     </message>
     <message>
-        <source>Cannot start neoxa: click-to-pay handler</source>
+        <source>Cannot start points: click-to-pay handler</source>
         <translation>Neoxa nu poate porni: click-to-pay handler</translation>
     </message>
     <message>
@@ -2626,8 +2626,8 @@ https://www.transifex.com/projects/p/neoxa/</translation>
         <translation>Dacă taxa vamală este stabilită la 1000 de duffi și tranzacția are doar 250 de octeți, atunci "per kilobyte" plătește doar 250 de duffi în taxă,&lt;br /&gt;în timp ce "cel puțin" plătește 1000 de duffi. Pentru tranzacțiile mai mari decât un kilobyte, ambele plătesc cu kilobyte.</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for neoxa transactions than the network can process.</source>
-        <translation>Plata numai a taxei minime este ok, atâta timp cât există un volum mai mic de tranzacții decât spațiul din block-uri.&lt;br /&gt;Dar trebuie să știi că acest lucru se poate încheia într-o tranzacție care nu se confirmă odată ce există mai multă cerere pentru tranzacții neoxa decât poate procesa rețeaua.</translation>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for points transactions than the network can process.</source>
+        <translation>Plata numai a taxei minime este ok, atâta timp cât există un volum mai mic de tranzacții decât spațiul din block-uri.&lt;br /&gt;Dar trebuie să știi că acest lucru se poate încheia într-o tranzacție care nu se confirmă odată ce există mai multă cerere pentru tranzacții points decât poate procesa rețeaua.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -2877,7 +2877,7 @@ https://www.transifex.com/projects/p/neoxa/</translation>
         <translation>Mesaj:</translation>
     </message>
     <message>
-        <source>A message that was attached to the neoxa: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Neoxa network.</source>
+        <source>A message that was attached to the points: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Neoxa network.</source>
         <translation>un mesaj a fost ataşat la Neoxa: URI care va fi stocat cu tranzacţia pentru referinţa dvs. Notă: Acest mesaj nu va fi trimis către reţeaua Neoxa.</translation>
     </message>
     <message>
@@ -3669,7 +3669,7 @@ https://www.transifex.com/projects/p/neoxa/</translation>
     </message>
 </context>
 <context>
-    <name>neoxa-core</name>
+    <name>points-core</name>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>
         <translation>Leagă-te de adresa dată și ascultă întotdeauna. Utilizează [host]: Notation port pentru IPv6</translation>

@@ -205,8 +205,8 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
 
 bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    // return if URI is not valid or is no neoxa: URI
-    if(!uri.isValid() || uri.scheme() != QString("neoxa"))
+    // return if URI is not valid or is no points: URI
+    if(!uri.isValid() || uri.scheme() != QString("points"))
         return false;
 
     SendCoinsRecipient rv;
@@ -252,7 +252,7 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!BitcoinUnits::parse(BitcoinUnits::NEOX, i->second, &rv.amount))
+                if(!BitcoinUnits::parse(BitcoinUnits::PTS, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -272,13 +272,13 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 
 bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 {
-    // Convert neoxa:// to neoxa:
+    // Convert points:// to points:
     //
-    //    Cannot handle this later, because neoxa:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because points:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
-    if(uri.startsWith("neoxa://", Qt::CaseInsensitive))
+    if(uri.startsWith("points://", Qt::CaseInsensitive))
     {
-        uri.replace(0, 7, "neoxa:");
+        uri.replace(0, 7, "points:");
     }
     QUrl uriInstance(uri);
     return parseBitcoinURI(uriInstance, out);
@@ -286,12 +286,12 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 
 QString formatBitcoinURI(const SendCoinsRecipient &info)
 {
-    QString ret = QString("neoxa:%1").arg(info.address);
+    QString ret = QString("points:%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(BitcoinUnits::format(BitcoinUnits::NEOX, info.amount, false, BitcoinUnits::separatorNever));
+        ret += QString("?amount=%1").arg(BitcoinUnits::format(BitcoinUnits::PTS, info.amount, false, BitcoinUnits::separatorNever));
         paramCount++;
     }
 
@@ -486,7 +486,7 @@ void openConfigfile()
 {
     fs::path pathConfig = GetConfigFile(gArgs.GetArg("-conf", BITCOIN_CONF_FILENAME));
 
-    /* Open neoxa.conf with the associated application */
+    /* Open points.conf with the associated application */
     if (fs::exists(pathConfig))
         QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
 }
@@ -785,8 +785,8 @@ fs::path static GetAutostartFilePath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetAutostartDir() / "neoxacore.desktop";
-    return GetAutostartDir() / strprintf("neoxacore-%s.lnk", chain);
+        return GetAutostartDir() / "pointscore.desktop";
+    return GetAutostartDir() / strprintf("pointscore-%s.lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -825,7 +825,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         if (!optionFile.good())
             return false;
         std::string chain = ChainNameFromCommandLine();
-        // Write a neoxacore.desktop file to the autostart directory:
+        // Write a pointscore.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == CBaseChainParams::MAIN)

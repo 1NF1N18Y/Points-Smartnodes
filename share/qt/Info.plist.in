@@ -35,7 +35,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.neoxa.Neoxa-Qt</string>
+  <string>org.points.Neoxa-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -43,10 +43,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.neoxa.NeoxaPayment</string>
+      <string>org.points.NeoxaPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>neoxa</string>
+        <string>points</string>
       </array>
     </dict>
   </array>
@@ -55,7 +55,7 @@
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
-      <string>org.neoxa.paymentrequest</string>
+      <string>org.points.paymentrequest</string>
       <key>UTTypeDescription</key>
       <string>Neoxa payment request</string>
       <key>UTTypeConformsTo</key>
@@ -65,10 +65,10 @@
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.mime-type</key>
-        <string>application/x-neoxa-payment-request</string>
+        <string>application/x-points-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>neoxamentrequest</string>
+          <string>pointsmentrequest</string>
         </array>
       </dict>
     </dict>
@@ -81,7 +81,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>org.neoxa.paymentrequest</string>
+        <string>org.points.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>

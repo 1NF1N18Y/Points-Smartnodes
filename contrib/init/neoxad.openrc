@@ -2,26 +2,26 @@
 
 # backward compatibility for existing gentoo layout 
 #
-if [ -d "/var/lib/neoxacore/.neoxacore" ]; then
-	BITCOIND_DEFAULT_DATADIR="/var/lib/neoxacore/.neoxacore"
+if [ -d "/var/lib/pointscore/.pointscore" ]; then
+	BITCOIND_DEFAULT_DATADIR="/var/lib/pointscore/.pointscore"
 else
-	BITCOIND_DEFAULT_DATADIR="/var/lib/neoxad"
+	BITCOIND_DEFAULT_DATADIR="/var/lib/pointsd"
 fi
 
-BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/neoxacore/neoxa.conf}
-BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/neoxad}
-BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/neoxad.pid}
+BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/pointscore/points.conf}
+BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/pointsd}
+BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/pointsd.pid}
 BITCOIND_DATADIR=${BITCOIND_DATADIR:-${BITCOIND_DEFAULT_DATADIR}}
-BITCOIND_USER=${BITCOIND_USER:-${BITCOIN_USER:-neoxacore}}
-BITCOIND_GROUP=${BITCOIND_GROUP:-neoxacore}
-BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/neoxad}
+BITCOIND_USER=${BITCOIND_USER:-${BITCOIN_USER:-pointscore}}
+BITCOIND_GROUP=${BITCOIND_GROUP:-pointscore}
+BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/pointsd}
 BITCOIND_NICE=${BITCOIND_NICE:-${NICELEVEL:-0}}
 BITCOIND_OPTS="${BITCOIND_OPTS:-${BITCOIN_OPTS}}"
 
 name="Neoxa Core Daemon"
 description="Neoxa cryptocurrency P2P network daemon"
 
-command="/usr/bin/neoxad"
+command="/usr/bin/pointsd"
 command_args="-pid=\"${BITCOIND_PIDFILE}\" \
 		-conf=\"${BITCOIND_CONFIGFILE}\" \
 		-datadir=\"${BITCOIND_DATADIR}\" \
@@ -71,7 +71,7 @@ checkconfig()
 {
 	if ! grep -qs '^rpcpassword=' "${BITCOIND_CONFIGFILE}" ; then
 		eerror ""
-		eerror "ERROR: You must set a secure rpcpassword to run neoxad."
+		eerror "ERROR: You must set a secure rpcpassword to run pointsd."
 		eerror "The setting must appear in ${BITCOIND_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "

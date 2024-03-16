@@ -37,7 +37,7 @@ class TestP2PConn(P2PInterface):
 
 class LLMQCoinbaseCommitmentsTest(NeoxaTestFramework):
     def set_test_params(self):
-        self.set_neoxa_test_params(4, 3, fast_dip3_enforcement=True)
+        self.set_points_test_params(4, 3, fast_dip3_enforcement=True)
 
     def run_test(self):
         self.test_node = self.nodes[0].add_p2p_connection(TestP2PConn())

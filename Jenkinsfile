@@ -34,7 +34,7 @@ for(int i = 0; i < targets.size(); i++) {
         "JOB_NUMBER=${BUILD_NUMBER}",
       ]
       withEnv(env) {
-        def builderImageName="neoxa-builder-${target}"
+        def builderImageName="points-builder-${target}"
 
         def builderImage
         stage("${target}/builder-image") {
@@ -44,49 +44,49 @@ for(int i = 0; i < targets.size(); i++) {
         builderImage.inside("-t") {
           // copy source into fixed path
           // we must build under the same path everytime as otherwise caches won't work properly
-          sh "cp -ra ${pwd}/. /neoxa-src/"
+          sh "cp -ra ${pwd}/. /points-src/"
 
           // restore cache
           def hasCache = false
           try {
-            copyArtifacts(projectName: "neoxa-neoxa/${BRANCH_NAME}", optional: true, selector: lastSuccessful(), filter: "ci-cache-${target}.tar.gz")
+            copyArtifacts(projectName: "points-points/${BRANCH_NAME}", optional: true, selector: lastSuccessful(), filter: "ci-cache-${target}.tar.gz")
           } catch (Exception e) {
           }
           if (fileExists("ci-cache-${target}.tar.gz")) {
             hasCache = true
-            echo "Using cache from neoxa-neoxa/${BRANCH_NAME}"
+            echo "Using cache from points-points/${BRANCH_NAME}"
           } else {
             try {
-              copyArtifacts(projectName: 'neoxa-neoxa/develop', optional: true, selector: lastSuccessful(), filter: "ci-cache-${target}.tar.gz");
+              copyArtifacts(projectName: 'points-points/develop', optional: true, selector: lastSuccessful(), filter: "ci-cache-${target}.tar.gz");
             } catch (Exception e) {
             }
             if (fileExists("ci-cache-${target}.tar.gz")) {
               hasCache = true
-              echo "Using cache from neoxa-neoxa/develop"
+              echo "Using cache from points-points/develop"
             }
           }
 
           if (hasCache) {
-            sh "cd /neoxa-src && tar xzf ${pwd}/ci-cache-${target}.tar.gz"
+            sh "cd /points-src && tar xzf ${pwd}/ci-cache-${target}.tar.gz"
           } else {
-            sh "mkdir -p /neoxa-src/ci-cache-${target}"
+            sh "mkdir -p /points-src/ci-cache-${target}"
           }
 
           stage("${target}/depends") {
-            sh 'cd /neoxa-src && ./ci/build_depends.sh'
+            sh 'cd /points-src && ./ci/build_depends.sh'
           }
           stage("${target}/build") {
-            sh 'cd /neoxa-src && ./ci/build_src.sh'
+            sh 'cd /points-src && ./ci/build_src.sh'
           }
           stage("${target}/test") {
-            sh 'cd /neoxa-src && ./ci/test_unittests.sh'
+            sh 'cd /points-src && ./ci/test_unittests.sh'
           }
           stage("${target}/test") {
-            sh 'cd /neoxa-src && ./ci/test_integrationtests.sh'
+            sh 'cd /points-src && ./ci/test_integrationtests.sh'
           }
 
           // archive cache and copy it into the jenkins workspace
-          sh "cd /neoxa-src && tar czfv ci-cache-${target}.tar.gz ci-cache-${target} && cp ci-cache-${target}.tar.gz ${pwd}/"
+          sh "cd /points-src && tar czfv ci-cache-${target}.tar.gz ci-cache-${target} && cp ci-cache-${target}.tar.gz ${pwd}/"
         }
 
         // upload cache

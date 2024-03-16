@@ -446,9 +446,9 @@ public:
 	    assert(consensus.hashGenesisBlock == uint256S("0000000a50fdaaf22f1c98b8c61559e15ab2269249aa1fb20683180703cdbf07"));
         assert(genesis.hashMerkleRoot == uint256S("7c1d71731b98c560a80cee3b88993c8c863342b9661894304fd843bf7e75a41f"));
 
-        vSeeds.emplace_back("seed.neoxa.net", false);
-	    vSeeds.emplace_back("seed1.neoxa.net", false);
-	    vSeeds.emplace_back("seed2.neoxa.net", false);
+        vSeeds.emplace_back("seed.points.net", false);
+	    vSeeds.emplace_back("seed1.points.net", false);
+	    vSeeds.emplace_back("seed2.points.net", false);
 
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38);
@@ -457,7 +457,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
-        // NEOXA BIP44 cointype in mainnet is '1668'
+        // POINTS BIP44 cointype in mainnet is '1668'
         nExtCoinType = 1668;
 
         vector<FounderRewardStructure> rewardStructures = { {620000, 15},// 15%
@@ -654,7 +654,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("testnet.neoxa.net", false);
+        vSeeds.emplace_back("testnet.points.net", false);
 
         // Testnet Neoxa addresses start with 'r'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,42);
@@ -722,7 +722,7 @@ public:
            // 0.01518114964117619        // * estimated number of transactions per second after that timestamp
         };
 
-        /** NEOXA Start **/
+        /** POINTS Start **/
         // Burn Amounts
         nIssueAssetBurnAmount = 500 * COIN;
         nReissueAssetBurnAmount = 100 * COIN;
@@ -753,7 +753,7 @@ public:
         nAssetActivationHeight = 1; // Asset activated block height
         nMessagingActivationBlock = 1; // Messaging activated block height
         nRestrictedActivationBlock = 1; // Restricted activated block height
-        /** NEOXA End **/
+        /** POINTS End **/
     }
 };
 
@@ -825,7 +825,7 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        //vSeeds.push_back(CDNSSeedData("neoxaevo.org",  "devnet-seed.neoxaevo.org"));
+        //vSeeds.push_back(CDNSSeedData("pointsevo.org",  "devnet-seed.pointsevo.org"));
 
         // Testnet Neoxa addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);

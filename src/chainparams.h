@@ -94,7 +94,7 @@ public:
     int PoolMinParticipants() const { return nPoolMinParticipants; }
     int PoolMaxParticipants() const { return nPoolMaxParticipants; }
     int FulfilledRequestExpireTime() const { return nFulfilledRequestExpireTime; }
-    /** NEOXA Start **/
+    /** POINTS Start **/
     const CAmount& IssueAssetBurnAmount() const { return nIssueAssetBurnAmount; }
     const CAmount& ReissueAssetBurnAmount() const { return nReissueAssetBurnAmount; }
     const CAmount& IssueSubAssetBurnAmount() const { return nIssueSubAssetBurnAmount; }
@@ -177,7 +177,7 @@ protected:
     int nMinSporkKeys;
     bool fBIP9CheckSmartnodesUpgraded;
     // Global Burn Address
-        /** NEOXA Start **/
+        /** POINTS Start **/
     // Burn Amounts
     CAmount nIssueAssetBurnAmount;
     CAmount nReissueAssetBurnAmount;
@@ -211,7 +211,7 @@ protected:
     unsigned int nRestrictedActivationBlock;
     int nAssetActivationHeight;
     uint32_t nKAAAWWWPOWActivationTime;
-    /** NEOXA End **/
+    /** POINTS End **/
 };
 
 /**

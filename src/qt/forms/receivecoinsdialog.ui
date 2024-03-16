@@ -316,7 +316,7 @@
   <tabstop>removeRequestButton</tabstop>
  </tabstops>
  <resources>
-  <include location="../neoxa.qrc"/>
+  <include location="../points.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -13,7 +13,7 @@
 #define BITCOIN_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/neoxa-config.h"
+#include "config/points-config.h"
 #endif
 
 #include "compat.h"
@@ -37,8 +37,8 @@
 
 // Uncomment the following line to enable debugging messages
 // or enable on a per file basis prior to inclusion of util.h
-//#define ENABLE_NEOXA_DEBUG
-#ifdef ENABLE_NEOXA_DEBUG
+//#define ENABLE_POINTS_DEBUG
+#ifdef ENABLE_POINTS_DEBUG
 #define DBG( x ) x
 #else
 #define DBG( x )
@@ -360,7 +360,7 @@ void RenameThreadPool(ctpl::thread_pool& tp, const char* baseName);
  */
 template <typename Callable> void TraceThread(const char* name,  Callable func)
 {
-    std::string s = strprintf("neoxa-%s", name);
+    std::string s = strprintf("points-%s", name);
     RenameThread(s.c_str());
     try
     {

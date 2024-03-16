@@ -12,7 +12,7 @@
 
 #include "support/events.h"
 
-#include "test/test_neoxa.h"
+#include "test/test_points.h"
 
 #include <vector>
 
